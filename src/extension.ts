@@ -74,9 +74,8 @@ async function interpreterListChanged(api: IProposedExtensionAPI) {
     printPaths(api);
 }
 
-async function printPaths(api: IProposedExtensionAPI) {
-    await printPathsPromise;
-    printPathsPromise = printPathsImpl(api);
+function printPaths(api: IProposedExtensionAPI) {
+    printPathsPromise = printPathsPromise.then(() => printPathsImpl(api));
     return printPathsPromise;
 }
 
